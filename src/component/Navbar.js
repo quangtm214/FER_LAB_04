@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 
 
 const navItems = [
@@ -26,7 +27,11 @@ const navItems = [
     }
 ];
 export default function Navbar() {
+    const [auth, setAuth] = React.useState(true);
+
+
     return (
+
         <AppBar component="nav" sx={{ mb: 10 }}>
             <Toolbar>
 
@@ -44,6 +49,5 @@ export default function Navbar() {
                 </Box>
             </Toolbar>
         </AppBar>
-
     )
 }

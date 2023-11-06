@@ -16,13 +16,12 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    width: 700,
+    height: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    width: 1000,
-    height: 500
-
 };
 
 export default function Detail() {
@@ -69,14 +68,13 @@ export default function Detail() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-description" sx={{ mt: 2, }}>
-                        <iframe src={film.clip} title={film.title} frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; 
-                        encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                        </iframe>
-                    </Typography>
+                    <iframe src={film.clip} title={film.title} frameborder="0"
+                        style={{ width: 700, height: 400, }}
+                        allow="accelerometer; autoplay; clipboard-write; 
+                        encrypted-media; gyroscope; picture-in-picture" >
+                    </iframe>
                 </Box>
-            </Modal>
+            </Modal >
         </>
     )
 }
