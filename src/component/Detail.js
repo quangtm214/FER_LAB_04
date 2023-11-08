@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Films } from '../shared/ListOfFilms';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +9,7 @@ import Box from '@mui/material/Box';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
+import filmApi from '../api/filmsApi';
 
 const style = {
     position: 'absolute',
@@ -25,15 +25,27 @@ const style = {
 };
 
 export default function Detail() {
+
     const sateFilm = useParams();
-    const film = Films.find(obj => {
-        return obj.id == sateFilm.id;
-    });
+    const [film, setFilm] = useState([]);
+
+    useEffect(() => {
+        const fetchFilm = async () => {
+            try {
+                const response = await filmApi.get(sateFilm.id);
+                console.log(response);
+                setFilm(response);
+            } catch (error) {
+                console.log('Failed to fetch film list: ', error);
+            }
+        }
+        fetchFilm();
+    }, []);
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
-
         <>
             <Card sx={{ display: 'flex', pt: 10 }} >
                 <CardActionArea sx={{ display: 'flex', pl: 1, pb: 1 }}>
